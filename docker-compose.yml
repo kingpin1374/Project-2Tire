@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mydatabase
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql 
+    networks:
+      - two-tire-networks
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 15s
+      timeout: 10s
+      retries: 5 
+      start_period: 30s
+
+
+volumes:
+  mysql_data:
+
+networks:
+  two-tire-networks:
+     
