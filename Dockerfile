@@ -2,7 +2,7 @@ FROM python:3.9-alpine
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y gcc default-libmysqlclient-dev pkg-config && \
+RUN apk update && apk add --no-cache gcc mariadb-dev pkgconfig \
 	rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
