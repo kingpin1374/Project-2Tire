@@ -17,12 +17,15 @@ pipeline {
         }
         stage('Deploy with docker-compose') {
             steps {
-                 sh '''
+                sh '''
                     # Install docker-compose if not exists
                     if ! command -v docker-compose &> /dev/null; then
-                        curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-                        chmod +x /usr/local/bin/docker-compose
+                        mkdir -p ~/bin
+                        curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o ~/bin/docker-compose
+                        chmod +x ~/bin/docker-compose
+                        export PATH="$HOME/bin:$PATH"
                     fi
+                    export PATH="$HOME/bin:$PATH"
                     docker-compose down || true
                     docker-compose up -d --build
                 '''
