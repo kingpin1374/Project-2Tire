@@ -21,10 +21,20 @@ services:
       retries: 5 
       start_period: 30s
 
+  flask-app:
+    image: flask-app:latest
+    container_name: flask-app
+    ports:
+      - "8000:8000"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - two-tire-networks
+    restart: always
 
 volumes:
   mysql_data:
 
 networks:
   two-tire-networks:
-     
