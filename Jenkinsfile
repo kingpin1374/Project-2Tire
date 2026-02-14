@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('clone repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/kingpin1374/Project-2Tire.git', credentialsId: 'github'
+                git branch: 'master', url: 'https://github.com/kingpin1374/Project-2Tire.git', credentialsId: 'github'
             }
         }
         stage('Build Image') {
