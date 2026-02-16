@@ -25,7 +25,7 @@ services:
     image: flask-app:latest
     container_name: flask-app
     ports:
-      - "8000:5000"  # Map host port 8000 to container port 5000
+      - "5000:5000"  # Map host port 5000 to container port 5000
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_USER=root
